@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  graphql:
+    build: 
+      context: .
+      dockerfile: ./services/graphql/Dockerfile
+    volumes:
+      - "./services/graphql/content:/app"
+    ports: 
+      - 4001:80
+    restart: "always"
+
+  database:
+      image: mysql:5.7
+      command: --default-authentication-plugin=mysql_native_password
+      environment:
+        MYSQL_ROOT_PASSWORD: <DB_ROOT_PASSWORD>
+        MYSQL_PORT: 3306
+      restart: 'always'
+      hostname: database
+      volumes:
+        - ./services/database/entrypoint:/docker-entrypoint-initdb.d
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 4002:8080
