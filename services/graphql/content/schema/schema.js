@@ -20,7 +20,7 @@ async function getSchema(){
             artist: {
                 type: ArtistType,
                 async resolve(parent, args){
-                    var [rows, fields] = await connection.execute('SELECT * FROM artists WHERE id=?', [parent.id])
+                    var [rows, fields] = await connection.execute('SELECT * FROM artists WHERE id=?', [parent.artistId])
                     return rows[0]
                 }
             }

@@ -1,1 +1,1 @@
-npm i && node app
+npm i && nodemon app
