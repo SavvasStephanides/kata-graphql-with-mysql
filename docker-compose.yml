@@ -27,3 +27,10 @@ services:
       restart: always
       ports:
         - 4002:8080
+
+  client:
+      image: httpd:2.4.46-alpine
+      ports: 
+        - 4003:80
+      volumes: 
+        - ./services/client:/usr/local/apache2/htdocs/
